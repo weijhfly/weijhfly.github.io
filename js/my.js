@@ -89,14 +89,12 @@ window.onload = function(){
 		}
 		audioAutoPlay();
 	});
+	document.addEventListener('touchstart', function (e) {
+		var audio = document.getElementById('myAudio');
+		if($(e.target).attr('id') != 'audio' && !$('#audio').hasClass('stop') && audio.paused){
+			console.log(1);
+			audio.play();
+		}
+	});
 setTimeout(function() {$('#pic-btn span').fadeIn();}, 1000);
 setTimeout(function() {$('#pic-btn span').fadeOut();}, 4000);
-setTimeout(function() {
-	var audio = document.getElementById('myAudio');
-	if(audio.paused){
-		$("body").one("touchstart",function(){
-			audio.play();
-		});
-	}
-	$('body').trigger('touchstart')
-}, 2000);
