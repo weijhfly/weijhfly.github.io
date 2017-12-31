@@ -38,6 +38,7 @@ body{
     -webkit-animation: mylove 5s; /* Safari 与 Chrome */
 	width:50%;
 	text-align:center;
+	opacity: 1;
 }
 @media(max-width: 768px){
 	.m-tit{font-size: 1.5em;}
