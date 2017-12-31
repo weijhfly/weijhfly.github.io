@@ -15,7 +15,7 @@ body{
 .bg2{background-image:url('../images/snow02.jpg');}
 }
 @media(max-width: 768px){
-.bg{background-image:url('../images/mobile_snow.png');}
+.bg{background-image:url('../images/mobile_snow.jpg');}
 .bg2{background-image:url('../images/mobile_snow02.jpg');}
 }
 #pic-btn{
