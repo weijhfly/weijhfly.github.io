@@ -33,25 +33,28 @@ body{
 	display: none;
 	position: absolute;
 	color: #fff;
-	left: 50%;top: 50%;margin:-22.5px 0  0 -118px;
+	left: 25%;top: 50%;
 	animation: mylove 5s;
     -webkit-animation: mylove 5s; /* Safari 与 Chrome */
+	width:50%;
+	text-align:center;
 }
 @media(max-width: 768px){
 	.m-tit{font-size: 1.5em;}
 }
-
-
+@media(max-width: 320px){
+	.m-tit{font-size: 1em;}
+}
 @keyframes mylove
 {
-   from{opacity: .6;left: 0;top: 0;}
-   to {opacity: 1;left: 50%;top: 50%;margin:-22.5px 0  0 -150px;}
+   from{opacity: 0;left: -10%;top: -10%;}
+   to {opacity: 1;left: 25%;top: 50%;}
 }
  
 @-webkit-keyframes mylove /* Safari 与 Chrome */
 {
-    from{opacity: .6;left: 0;top: 0;}
-    to {opacity: 1;left: 50%;top: 50%;margin:-22.5px 0  0 -150px;}
+    from{opacity: 0;left: -10%;top: -10%;}
+    to {opacity: 1;left: 25%;top: 50%;}
 }
 .bg .m-tit{display: block;}
 .text-box{
