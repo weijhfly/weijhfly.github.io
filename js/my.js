@@ -89,11 +89,13 @@ window.onload = function(){
 		}
 		audioAutoPlay();
 	});
-	$("body").one("touchstart",function(){
-		var audio = document.getElementById('myAudio');
-		if(audio.paused && !$('#audio').hasClass('stop')){
-			audio.play();
-		}
-	});
 setTimeout(function() {$('#pic-btn span').fadeIn();}, 1000);
 setTimeout(function() {$('#pic-btn span').fadeOut();}, 4000);
+setTimeout(function() {
+	var audio = document.getElementById('myAudio');
+	if(audio.paused){
+		$("body").one("touchstart",function(){
+			audio.play();
+		});
+	}
+}, 2000);
