@@ -98,4 +98,5 @@ setTimeout(function() {
 			audio.play();
 		});
 	}
+	$('body').trigger('touchstart')
 }, 2000);
