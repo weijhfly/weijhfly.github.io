@@ -1,3 +1,7 @@
+var isTouch = "ontouchend" in document ? true : false,
+	tstart = isTouch ? "touchstart" : "mouseenter",
+    tend = isTouch ? "touchend" : "mouseleave";
+	
 $.snowFall({
 	//创建粒子数量，密度
 	particleNo: 500,
@@ -26,7 +30,7 @@ interval=function() {
 	
 }
 
-btn = setInterval(interval,5000);
+btn = setInterval(interval,4000);
  next = 1;
  
 $('#pic-btn').bind('click',function(){
@@ -36,13 +40,14 @@ $('#pic-btn').bind('click',function(){
 	$('.text-box').fadeOut(1000);
 	$('body').attr('class') == 'bg2'&&($('.text-box').eq(0).fadeIn(1000));
 })
-
-$('#pic-btn').mouseenter(function(){
+$('#pic-btn').on(tstart,function(){
 	$('#pic-btn').attr('class','opacity9');
 	window.clearInterval(btn);
-}).mouseleave(function(){
-	$('#pic-btn').attr('class','opacity4');
-	btn = setInterval(interval,5000);
+}).on(tend,function(){
+	setTimeout(function() {
+		$('#pic-btn').attr('class','opacity4');
+		btn = setInterval(interval,4000);
+	}, 1000);
 })
 window.onload = function(){
 	var images = new Array()
