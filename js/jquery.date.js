@@ -103,14 +103,14 @@
             $(document).on(tstart,'#date-wrapper ol', function(e){
                 var e = e.originalEvent;
                 e.stopPropagation();
-                //e.preventDefault();
+                e.preventDefault();
                 T = e.pageY || e.touches[0].pageY;
                 if(!isTouch){isPress = true;}
             })
             $(document).on(tmove,'#date-wrapper ol', function(e){
                 var e = e.originalEvent,that = $(this);
                 e.stopPropagation();
-                //e.preventDefault();
+                e.preventDefault();
                 if(!isTouch && !isPress){return false};
                 mT = e.pageY || e.touches[0].pageY;
                 that.css('top', that.position().top + (mT - T) + 'px');
@@ -121,7 +121,7 @@
             $(document).on(tend,'#date-wrapper ol', function(e){
                 var e = e.originalEvent,that = $(this);
                 e.stopPropagation();
-                //e.preventDefault();
+                e.preventDefault();
                 isPress = false;
                 dragEnd(that);
             })
