@@ -43,6 +43,10 @@
     //dom渲染
     domDate = '<div id="date-wrapper"><h3>选择日期</h3><div id="d-content"><div id="d-tit"><div class="t1">年</div><div class="t2">月</div>' + '<div class="t3">日</div></div><div id="d-bg"><ol id="d-year"></ol><ol id="d-month"></ol>' + '<ol id="d-day"></ol>' + '</div></div><a id="d-cancel" href="javascript:">取消</a><a id="d-confirm" href="javascript:">确定</a></div><div id="d-mask"></div>';
     var css = '<style type="text/css">a{text-decoration:none;}ol,li{margin:0;padding:0}li{list-style-type:none}#date-wrapper{position:fixed;top:20%;left:50%;width:90%;margin-left:-45%;z-index:56;text-align:center;background:#fff;border-radius:3px;padding-bottom:15px;display:none}#d-mask{position:fixed;width:100%;height:100%;top:0;left:0;background:#000;filter:alpha(Opacity=50);-moz-opacity:.5;opacity:.5;z-index:55;display:none}#date-wrapper h3{line-height:50px;background:#79c12f;color:#fff;font-size:20px;margin:0;border-radius:3px 3px 0 0}#date-wrapper ol,#d-tit>div{width:16.6666666%;float:left;position:relative}#d-content{padding:10px}#d-content #d-bg{background:#f8f8f8;border:1px solid #e0e0e0;border-radius:0 0 5px 5px;height:120px;overflow:hidden;margin-bottom:10px;position:relative}#d-cancel,#d-confirm{border-radius:3px;float:left;width:40%;line-height:30px;font-size:16px;background:#dcdddd;color:#666;margin:0 5%}#d-confirm{background:#79c12f;color:#fff}#date-wrapper li{line-height:40px;height:40px;cursor:pointer;position:relative}#d-tit{background:#f8f8f8;overflow:hidden;border-radius:5px 5px 0 0;line-height:30px;border:1px solid #e0e0e0;margin-bottom:-1px}#date-wrapper ol{-webkit-overflow-scrolling:touch;position:absolute;top:0;left:0}#date-wrapper ol:nth-child(2){left:16.6666666%}#date-wrapper ol:nth-child(3){left:33.3333332%}#date-wrapper ol:nth-child(4){left:49.9999998%}#date-wrapper ol:nth-child(5){left:66.6666664%}#date-wrapper ol:nth-child(6){left:83.333333%}#d-content #d-bg:after{content:\'\';height:40px;background:#ddd;position:absolute;top:40px;left:0;width:100%;z-index:1}#date-wrapper li span{position:absolute;width:100%;z-index:99;height:100%;left:0;top:0}#date-wrapper.two ol,.two #d-tit>div{width:50%}#date-wrapper.two ol:nth-child(2){left:50%}#date-wrapper.three ol,.three #d-tit>div{width:33.333333%}#date-wrapper.three ol:nth-child(2){left:33.333333%}#date-wrapper.three ol:nth-child(3){left:66.666666%}#date-wrapper.four ol,.four #d-tit>div{width:25%}#date-wrapper.four ol:nth-child(2){left:25%}#date-wrapper.four ol:nth-child(3){left:50%}#date-wrapper.four ol:nth-child(4){left:75%}#date-wrapper.five ol,.five #d-tit>div{width:20%}#date-wrapper.five ol:nth-child(2){left:20%}#date-wrapper.five ol:nth-child(3){left:40%}#date-wrapper.five ol:nth-child(4){left:60%}#date-wrapper.five ol:nth-child(5){left:80%}</style>';
+	if(navigator.language.indexOf('zh') == -1){
+		domDate = domDate.replace('选择日期','DatePicker ').replace('取消','cancel').replace('确定','confirm');
+		css = css.replace('</style>','#date-wrapper #d-tit{display:none;}</style>');
+	}
     $("head").append(css);
     body.append(domDate);
     
@@ -321,23 +325,25 @@
             str = y+'-'+m;
         }
         if(opt.limitTime == 'today'){
-            var d = new Date();
+            var d = new Date(),
+				error = navigator.language.indexOf('zh') != -1? '不能选择过去的时间':'You can\'t choose the past time';
             //当前日期
             var day = String(d.getFullYear())+'-'+String(d.getMonth() + 1)+'-'+String(d.getDate());
             var d1 = new Date(str.replace(/\-/g, "\/")); 
             var d2 = new Date(day.replace(/\-/g, "\/"));
             if(d1 < d2){
-                alert('不能选择过去的时间');
+                alert(error);
                 return false;
             }  
         }else if(opt.limitTime == 'tomorrow'){
-            var d = new Date();
+            var d = new Date(),
+				error = navigator.language.indexOf('zh') != -1? '时间最少选择明天':'Choose tomorrow at least';
             //当前日期+1
             var day = String(d.getFullYear())+'-'+String(d.getMonth() + 1)+'-'+String(d.getDate()+1);
             var d1 = new Date(str.replace(/\-/g, "\/")); 
             var d2 = new Date(day.replace(/\-/g, "\/"));
             if(d1 < d2){
-                alert('时间最少选择明天');
+                alert(error);
                 return false;
             }  
         }
