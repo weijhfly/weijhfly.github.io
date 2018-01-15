@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0">
+	<title>tap demo</title>
+</head>
+<body>
+	<div>
+		<button class="button">tap1</button>
+		<button class="button">tap2</button>
+		<button class="button">tap3</button>
+		<button class="button">tap4</button>
+		<button class="button">tap5</button>
+	</div>
+	<hr>
+	<div id="test">
+		<button class="button2">tap1</button>
+		<button class="add">add</button>
+	</div>
+	<script src="js/tap.js"></script>
+	<script>
+		//普通调用
+		tap('.button',function(){
+			var e = "ontouchend" in document? 'tap':'click';
+			alert(e+' : '+this.innerText);
+		})
+		// 事件委托 event delegation
+		tap('#test','.button2',function(){
+			var e = "ontouchend" in document? 'tap':'click';
+			alert(e+' : '+this.innerText);
+		})
+		tap('#test','.add',function(){
+			var test = document.getElementById("test");
+			var button = document.createElement("button");
+			button.className = 'button2';
+			button.innerHTML = "button text";
+			test.insertBefore(button,test.childNodes[0]); 
+		})
+	</script>
+</body>
+</html>
