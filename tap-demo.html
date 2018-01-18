@@ -18,7 +18,12 @@
 		<button class="button2">tap1</button>
 		<button class="add">add</button>
 	</div>
-	<script src="js/tap.js"></script>
+	<hr>
+	<div id="parent">
+		parent<br><br>
+		<button class="son">son</button>
+	</div>
+	<script src="tap.js"></script>
 	<script>
 		//普通调用
 		tap('.button',function(){
@@ -37,6 +42,18 @@
 			button.innerHTML = "button text";
 			test.insertBefore(button,test.childNodes[0]); 
 		})
+		/*
+		阻止冒泡 true stop propagation
+		在事件委托中仅能阻止委托元素对上层的冒泡
+		*/
+		tap('#parent',function(){
+			console.log('parent');
+		})
+		//若在此使用alert等阻塞线程的方法，将会影响300ms判断而无法正常模拟冒泡，后续将调整,
+		//click无影响，可以正常冒泡
+		tap('.son',function(){
+			console.log('son');
+		},true)
 	</script>
 </body>
 </html>
