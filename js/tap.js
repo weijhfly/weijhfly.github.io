@@ -35,7 +35,7 @@
 				o.endY = t.clientY;
 				if((+ new Date)-o.sTime<300){
 					if(Math.abs(o.endX-o.startX)+Math.abs(o.endY-o.startY)<20){
-						e.preventDefault();
+						//e.preventDefault();
 						if(isEntrust){
 							if(equal(e,arg[1])){
 								arg[2].call(e.target);
