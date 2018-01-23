@@ -30,6 +30,7 @@
 				o.sTime = + new Date;
 			});
 			els[i].addEventListener('touchend',function(e){
+				e.preventDefault();
 				var t = e.changedTouches[0];
 				o.endX = t.pageX;
 				o.endY = t.pageY;
