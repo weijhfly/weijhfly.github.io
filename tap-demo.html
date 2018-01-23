@@ -46,7 +46,7 @@
 	</div>
 	<!-- layer.js仅做弹出演示 -->
 	<script src="js/layer/layer.js"></script>
-	<script src="js/tap.js"></script>
+	<script src="js/tap.js?v=3"></script>
 	<script>
 		//直接调用
 tap('.button',function(e){
@@ -99,7 +99,7 @@ tap('.son2',function(e){
 同上，事件委托中仅能阻止委托元素的默认动作
 */
 tap('.a1',function(e){
-	e.preventDefault();
+	//e.preventDefault();
 	console.log('无法跳转');
 })
 //快速跳转-事件委托
