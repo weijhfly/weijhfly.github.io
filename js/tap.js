@@ -1,5 +1,5 @@
 /*!
- * tap.js
+ * tap.js v1.1.2
  * by weijianhua  https://github.com/weijhfly/tap
 */
 ;(function (factory) {
@@ -12,7 +12,8 @@
 	}
 }(function(){
 	var arg = arguments,
-		els = document.querySelectorAll(arg[0]),
+		doc = document,
+		els = arg[0] == doc ? [doc]:document.querySelectorAll(arg[0]),
 		isTouch = "ontouchend" in document,
 		len = els.length,
 		i = 0,
@@ -24,45 +25,37 @@
 			var o = {};
 			els[i].addEventListener('touchstart',function(e){
 				var t = e.touches[0];
-				o.startX = t.clientX;
-				o.startY = t.clientY;
+				o.startX = t.pageX;
+				o.startY = t.pageY;
 				o.sTime = + new Date;
-				if(arg[isEntrust ? 3:2]){e.stopPropagation();}
 			});
 			els[i].addEventListener('touchend',function(e){
 				var t = e.changedTouches[0];
-				o.endX = t.clientX;
-				o.endY = t.clientY;
+				o.endX = t.pageX;
+				o.endY = t.pageY;
 				if((+ new Date)-o.sTime<300){
 					if(Math.abs(o.endX-o.startX)+Math.abs(o.endY-o.startY)<20){
-						//e.preventDefault();
-						if(isEntrust){
-							if(equal(e,arg[1])){
-								arg[2].call(e.target);
-							}
-						}else{
-							arg[1].call(this);
-						}
+						handler(e,arg,this);
 					}
 				}
-				if(arg[isEntrust ? 3:2]){e.stopPropagation();}
 				o = {};
 			});
 		}else{
 			els[i].addEventListener('click',function(e){
-				if(arg[isEntrust ? 3:2]){e.stopPropagation();}
-				if(isEntrust){
-					if(equal(e,arg[1])){
-						arg[2].call(e.target);
-					}
-				}else{
-					arg[1].call(this);
-				}
+				handler(e,arg,this);
 			});
 		}
 		i ++;
 	}
-
+	function handler(e,arg,that){
+		if(isEntrust){
+			if(equal(e,arg[1])){
+				arg[2].call(e.target,e);
+			}
+		}else{
+			arg[1].call(that,e);
+		}
+	}
 	function equal(e,el){
 		var flag = false;
 		if(el.indexOf('.') != -1 && e.target.className == el.replace('.','')){
