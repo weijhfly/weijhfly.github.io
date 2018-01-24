@@ -38,17 +38,24 @@
 	</div>
 	<h3>阻止默认动作</h3>
 	<a href="无法跳转" class="a1">无法跳转</a>
+	<h3>代码优化</h3>
 	<h4>快速跳转</h4>
 	<div class="a-box">
 		<a href="https://github.com/weijhfly/tap" class="a2">快速跳转</a>
 		<a href="https://github.com/weijhfly/tap" class="a2">快速跳转</a>
 		<a href="https://github.com/weijhfly/tap" class="a2">快速跳转</a>
 	</div>
+	<h4>同时指定多个事件</h4>
+	<button class="e1">事件1</button>
+	<button class="e2">事件2</button>
+	<button class="e3">事件3</button>
 	<!-- layer.js仅做弹出演示 -->
-	<script src="js/layer/layer.js"></script>
-	<script src="js/tap.js?v=3"></script>
-	<script>
-		//直接调用
+<script src="js/layer/layer.js"></script>
+<script src="js/tap.js?v=4"></script>
+<script>
+var tap = require('../tap.js');
+
+//直接调用
 tap('.button',function(e){
 	console.log(e);
 	var event = "ontouchend" in document? 'tap':'click';
@@ -73,7 +80,7 @@ tap(document,'.doc',function(){
 	layer.msg('doc');
 })
 /*
-阻止冒泡 true stop propagation
+阻止冒泡 stop propagation
 在事件委托中仅能阻止委托元素对上层的冒泡
 */
 tap('#parent',function(){
@@ -102,10 +109,25 @@ tap('.a1',function(e){
 	e.preventDefault();
 	console.log('无法跳转');
 })
+/*
+* 代码优化
+*/
 //快速跳转-事件委托
 tap(document,'.a2',function(){
 	window.location = this.href;
 });
-	</script>
+// 通过冒泡实现多个事件 **默认不能重复，重复只执行第一个
+tap(document,{
+	'.e1':function(){
+	   layer.msg(this.innerText);
+	},
+	'.e2':function(){
+	   layer.msg(this.innerText);
+	},
+	'.e3':function(){
+	   layer.msg(this.innerText);
+	}
+});
+</script>
 </body>
 </html>
