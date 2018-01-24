@@ -1,5 +1,5 @@
 /*!
- * tap.js v1.1.2
+ * tap.js v1.1.6
  * by weijianhua  https://github.com/weijhfly/tap
 */
 ;(function (factory) {
@@ -17,7 +17,8 @@
 		isTouch = "ontouchend" in document,
 		len = els.length,
 		i = 0,
-		isEntrust = typeof arg[1]== 'string';
+		isEntrust = typeof arg[1]== 'string',
+		isMulti = typeof arg[1]== 'object';
 
 	if(len == 0){return false;}
 	while (i < len){
@@ -52,6 +53,13 @@
 		if(isEntrust){
 			if(equal(e,arg[1])){
 				arg[2].call(e.target,e);
+			}
+		}else if(isMulti){
+			for(key in arg[1]){
+				if(equal(e,key)){
+					arg[1][key].call(e.target,e);
+					break;
+				}
 			}
 		}else{
 			arg[1].call(that,e);
