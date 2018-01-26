@@ -9,7 +9,7 @@
 	</style>
 </head>
 <body>
-	<h3>直接调用</h3>
+		<h3>直接调用</h3>
 	<div>
 		<button class="button">tap1</button>
 		<button class="button">tap2</button>
@@ -37,22 +37,28 @@
 		<button class="son2">son2</button>
 	</div>
 	<h3>阻止默认动作</h3>
-	<a href="无法跳转" class="a1">无法跳转</a>
+	<form action="">
+		<button class="submit" type="submit">提交</button>
+	</form>
 	<h3>代码优化</h3>
 	<h4>快速跳转</h4>
 	<div class="a-box">
-		<a href="https://github.com/weijhfly/tap" class="a2">快速跳转</a>
-		<a href="https://github.com/weijhfly/tap" class="a2">快速跳转</a>
-		<a href="https://github.com/weijhfly/tap" class="a2">快速跳转</a>
+		<a href="https://github.com/weijhfly/tap">快速跳转</a>
+		<a href="https://github.com/weijhfly/tap">快速跳转</a>
+		<a href="https://github.com/weijhfly/tap">快速跳转</a>
 	</div>
+	<h4>获取焦点</h4>
+	<input type="text"><br><br>
+	<textarea name="" id="" cols="30" rows="10"></textarea>
 	<h4>同时指定多个事件</h4>
 	<button class="e1">事件1</button>
 	<button class="e2">事件2</button>
 	<button class="e3">事件3</button>
 	<!-- layer.js仅做弹出演示 -->
 <script src="js/layer/layer.js"></script>
-<script src="js/tap.js?v=4"></script>
+<script src="js/tap.js?v=5"></script>
 <script>
+
 //直接调用
 tap('.button',function(e){
 	console.log(e);
@@ -102,20 +108,22 @@ tap('.son2',function(e){
 /*
 阻止默认动作
 同上，事件委托中仅能阻止委托元素的默认动作
+注意：在移动端默认执行e.preventDefault();
 */
-tap('.a1',function(e){
-	e.stopPropagation();
+tap('.submit',function(e){
 	e.preventDefault();
-	layer.msg('无法跳转');
+	e.stopPropagation();
+	layer.msg('无法提交');
 })
 /*
 * 代码优化
 */
-//快速跳转-事件委托
-tap(document,'.a2',function(){
-	window.location = this.href;
-});
-// 通过冒泡实现多个事件 **默认不能重复，重复只执行第一个
+//跳转 **存在href属性
+tap(document,'a');
+//获取焦点
+tap(document,'input');
+tap(document,'textarea');
+// 通过委托实现多个事件 **默认不能重复，重复只执行第一个
 tap(document,{
 	'.e1':function(){
 	   layer.msg(this.innerText);
