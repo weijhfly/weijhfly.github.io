@@ -1,5 +1,5 @@
 /*!
- * tap.js v1.1.6
+ * tap.js v1.1.7
  * by weijianhua  https://github.com/weijhfly/tap
 */
 ;(function (factory) {
@@ -50,6 +50,14 @@
 		i ++;
 	}
 	function handler(e,arg,that){
+
+		if(e.target.href){
+			return window.location = e.target.href;
+		}
+		var tagName = e.target.tagName.toLocaleLowerCase();
+		if(tagName === 'input' || tagName === 'textarea') {
+          return e.target.focus();
+        }
 		if(isEntrust){
 			if(equal(e,arg[1])){
 				arg[2].call(e.target,e);
