@@ -1,5 +1,5 @@
 /*!
- * tap.js v1.2.1
+ * tap.js v1.2.2
  * by weijianhua  https://github.com/weijhfly/tap
 */
 ;(function (factory) {
@@ -36,11 +36,6 @@
 				o.endY = t.pageY;
 				if((+ new Date)-o.sTime<300){
 					if(Math.abs(o.endX-o.startX)+Math.abs(o.endY-o.startY)<20){
-						var tagName = e.target.tagName.toLocaleLowerCase();
-						if(tagName != 'select' && tagName != 'input' && tagName != 'textarea'){
-							doc.activeElement.blur();
-							e.preventDefault();
-						}
 						handler(e,arg,this);
 					}
 				}
@@ -54,22 +49,24 @@
 		i ++;
 	}
 	function handler(e,arg,that){
-
 		if(e.target.href){
 			return window.location = e.target.href;
 		}
 		if(isEntrust){
 			if(equal(e,arg[1])){
+				prevent(e);
 				arg[2].call(e.target,e);
 			}
 		}else if(isMulti){
 			for(key in arg[1]){
 				if(equal(e,key)){
+					prevent(e);
 					arg[1][key].call(e.target,e);
 					break;
 				}
 			}
 		}else{
+			prevent(e);
 			arg[1].call(that,e);
 		}
 	}
@@ -83,5 +80,15 @@
 			flag = true;
 		}
 		return flag;
+	}
+	/*preventDefault不执行则会引起触发失效bug，
+	 *但不必要则不执行。	
+	*/
+	function prevent(e){
+		var tagName = e.target.tagName.toLocaleLowerCase();
+		if(tagName != 'select' && tagName != 'input' && tagName != 'textarea'){
+			doc.activeElement.blur();
+			e.preventDefault();
+		}
 	}
 }))
