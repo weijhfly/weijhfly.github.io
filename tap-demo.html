@@ -47,9 +47,6 @@
 		<a href="https://github.com/weijhfly/tap">快速跳转</a>
 		<a href="https://github.com/weijhfly/tap">快速跳转</a>
 	</div>
-	<h4>获取焦点</h4>
-	<input type="text"><br><br>
-	<textarea name="" id="" cols="30" rows="10"></textarea>
 	<h4>同时指定多个事件</h4>
 	<button class="e1">事件1</button>
 	<button class="e2">事件2</button>
@@ -120,9 +117,6 @@ tap('.submit',function(e){
 */
 //跳转 **存在href属性
 tap(document,'a');
-//获取焦点
-tap(document,'input');
-tap(document,'textarea');
 // 通过委托实现多个事件 **默认不能重复，重复只执行第一个
 tap(document,{
 	'.e1':function(){
