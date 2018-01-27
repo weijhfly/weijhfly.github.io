@@ -1,5 +1,5 @@
 /*!
- * tap.js v1.1.8
+ * tap.js v1.1.9
  * by weijianhua  https://github.com/weijhfly/tap
 */
 ;(function (factory) {
@@ -31,7 +31,10 @@
 				o.sTime = + new Date;
 			});
 			els[i].addEventListener('touchend',function(e){
-				e.preventDefault();
+				var tagName = e.target.tagName.toLocaleLowerCase();
+				if(tagName != 'select'){
+					e.preventDefault();
+				}
 				var t = e.changedTouches[0];
 				o.endX = t.pageX;
 				o.endY = t.pageY;
