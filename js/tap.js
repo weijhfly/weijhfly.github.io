@@ -1,5 +1,5 @@
 /*!
- * tap.js v1.1.9
+ * tap.js v1.2.0
  * by weijianhua  https://github.com/weijhfly/tap
 */
 ;(function (factory) {
@@ -32,7 +32,8 @@
 			});
 			els[i].addEventListener('touchend',function(e){
 				var tagName = e.target.tagName.toLocaleLowerCase();
-				if(tagName != 'select'){
+				if(tagName != 'select' && tagName != 'input' && tagName != 'textarea'){
+					document.activeElement.blur();
 					e.preventDefault();
 				}
 				var t = e.changedTouches[0];
@@ -57,12 +58,6 @@
 		if(e.target.href){
 			return window.location = e.target.href;
 		}
-		var tagName = e.target.tagName.toLocaleLowerCase();
-		if(tagName === 'input' || tagName === 'textarea') {
-          return e.target.focus();
-        }else{
-        	document.activeElement.blur();
-        }
 		if(isEntrust){
 			if(equal(e,arg[1])){
 				arg[2].call(e.target,e);
