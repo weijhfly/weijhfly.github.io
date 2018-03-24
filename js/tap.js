@@ -1,6 +1,7 @@
 /*!
- * tap.js v1.2.2
- * by weijianhua  https://github.com/weijhfly/tap
+ * tap.js v1.2.4
+ * By 雾空 https://github.com/weijhfly/tap
+ * Time:2018/1/17
 */
 ;(function (factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -71,19 +72,10 @@
 		}
 	}
 	function equal(e,el){
-		var flag = false;
-		if(el.indexOf('.') != -1 && e.target.className == el.replace('.','')){
-			flag = true;
-		}else if(el.indexOf('#') != -1 && e.target.id == el.replace('#','')){
-			flag = true;
-		}else if(e.target.nodeName.toLocaleLowerCase() == el){
-			flag = true;
-		}
-		return flag;
+		return el[0] == '#'? new RegExp('\\b'+ el.substring(1) +'\\b').test(e.target.id) : 
+			el[0] == '.'? new RegExp('\\b'+ el.substring(1) +'\\b').test(e.target.className) :
+			e.target.nodeName.toLocaleLowerCase() == el;
 	}
-	/*preventDefault不执行则会引起触发失效bug，
-	 *但不必要则不执行。	
-	*/
 	function prevent(e){
 		var tagName = e.target.tagName.toLocaleLowerCase();
 		if(tagName != 'select' && tagName != 'input' && tagName != 'textarea'){
