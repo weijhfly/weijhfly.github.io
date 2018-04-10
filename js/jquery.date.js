@@ -135,16 +135,16 @@
             //滑动
             var T,mT,isPress = false;
             $(doc).on(tstart,'#date-wrapper ol', function(e){
-                //var e = e.originalEvent;
-                e.stopPropagation();
+				e.stopPropagation();
                 e.preventDefault();
+                var e = e.originalEvent;
                 T = e.pageY || e.touches[0].pageY;
                 if(!isTouch){isPress = true;}
             })
             $(doc).on(tmove,'#date-wrapper ol', function(e){
-                var that = $(this);
-                e.stopPropagation();
+				e.stopPropagation();
                 e.preventDefault();
+                var e = e.originalEvent,that = $(this);
                 if(!isTouch && !isPress){return false};
                 mT = e.pageY || e.touches[0].pageY;
                 that.css('top', that.position().top + (mT - T) + 'px');
@@ -153,16 +153,16 @@
                 if (that.position().top < -(that.height() - (3*resH))) that.css('top', '-' + (that.height() - (3*resH)) + 'px');
             })
             $(doc).on(tend,'#date-wrapper ol', function(e){
-                var that = $(this);
-                e.stopPropagation();
+				e.stopPropagation();
                 e.preventDefault();
+                var e = e.originalEvent,that = $(this);
                 isPress = false;
                 dragEnd(that);
             })
             $(doc).on(tcancel,'#date-wrapper ol', function(e){
-                var that = $(this);
-                e.stopPropagation();
+				e.stopPropagation();
                 e.preventDefault();
+                var e = e.originalEvent,that = $(this);
                 isPress = false;
 				// 解决一个pc端莫名触发问题
 				if(!isTouch && + new Date() > time + 600){
