@@ -152,7 +152,7 @@
                 if (that.position().top > 0) that.css('top', '0');
                 if (that.position().top < -(that.height() - (3*resH))) that.css('top', '-' + (that.height() - (3*resH)) + 'px');
             })
-            $('#date-wrapper ol').bind((tend, function(e){
+            $('#date-wrapper ol').bind(tend, function(e){
 				e.stopPropagation();
                 e.preventDefault();
                 var e = e.originalEvent,that = $(this);
