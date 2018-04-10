@@ -135,14 +135,14 @@
             //滑动
             var T,mT,isPress = false;
             $(doc).on(tstart,'#date-wrapper ol', function(e){
-                var e = e.originalEvent;
+                //var e = e.originalEvent;
                 e.stopPropagation();
                 e.preventDefault();
                 T = e.pageY || e.touches[0].pageY;
                 if(!isTouch){isPress = true;}
             })
             $(doc).on(tmove,'#date-wrapper ol', function(e){
-                var e = e.originalEvent,that = $(this);
+                var that = $(this);
                 e.stopPropagation();
                 e.preventDefault();
                 if(!isTouch && !isPress){return false};
@@ -153,14 +153,14 @@
                 if (that.position().top < -(that.height() - (3*resH))) that.css('top', '-' + (that.height() - (3*resH)) + 'px');
             })
             $(doc).on(tend,'#date-wrapper ol', function(e){
-                var e = e.originalEvent,that = $(this);
+                var that = $(this);
                 e.stopPropagation();
                 e.preventDefault();
                 isPress = false;
                 dragEnd(that);
             })
             $(doc).on(tcancel,'#date-wrapper ol', function(e){
-                var e = e.originalEvent,that = $(this);
+                var that = $(this);
                 e.stopPropagation();
                 e.preventDefault();
                 isPress = false;
