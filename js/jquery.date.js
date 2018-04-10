@@ -159,7 +159,7 @@
                 isPress = false;
                 dragEnd(that);
             })
-            $('#date-wrapper ol').bind((tcancel, function(e){
+            $('#date-wrapper ol').bind(tcancel, function(e){
 				e.stopPropagation();
                 e.preventDefault();
                 var e = e.originalEvent,that = $(this);
