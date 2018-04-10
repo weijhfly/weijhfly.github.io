@@ -134,14 +134,14 @@
         slide:function(el){
             //滑动
             var T,mT,isPress = false;
-            $(doc).on(tstart,'#date-wrapper ol', function(e){
+            $('#date-wrapper ol').bind(tstart, function(e){
 				e.stopPropagation();
                 e.preventDefault();
                 var e = e.originalEvent;
                 T = e.pageY || e.touches[0].pageY;
                 if(!isTouch){isPress = true;}
             })
-            $(doc).on(tmove,'#date-wrapper ol', function(e){
+            $('#date-wrapper ol').bind(tmove, function(e){
 				e.stopPropagation();
                 e.preventDefault();
                 var e = e.originalEvent,that = $(this);
@@ -152,14 +152,14 @@
                 if (that.position().top > 0) that.css('top', '0');
                 if (that.position().top < -(that.height() - (3*resH))) that.css('top', '-' + (that.height() - (3*resH)) + 'px');
             })
-            $(doc).on(tend,'#date-wrapper ol', function(e){
+            $('#date-wrapper ol').bind((tend, function(e){
 				e.stopPropagation();
                 e.preventDefault();
                 var e = e.originalEvent,that = $(this);
                 isPress = false;
                 dragEnd(that);
             })
-            $(doc).on(tcancel,'#date-wrapper ol', function(e){
+            $('#date-wrapper ol').bind((tcancel, function(e){
 				e.stopPropagation();
                 e.preventDefault();
                 var e = e.originalEvent,that = $(this);
