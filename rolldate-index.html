@@ -8,13 +8,15 @@
 		h1{font-size: 22px;}
 		input+input{margin-left: 10px;}
 	</style>
-<link href="css/rolldate.css" rel="stylesheet"></head>
+<link href="css/rolldate.css?v=2" rel="stylesheet"></head>
 <body>
 <h1>rolldate 移动端时间选择插件</h1>
-<div>支持格式：<br>YYYY-MM、YYYY-MM-DD、YYYY-MM-DD hh:mm、YYYY-MM-DD hh:mm:ss</div>
+<div>支持格式：<br>YYYY、YYYY-MM、YYYY-MM-DD、YYYY-MM-DD hh:mm、YYYY-MM-DD hh:mm:ss</div>
 <input readonly type="text" id="date" placeholder="YYYY-MM"><input readonly type="text" id="date2" placeholder="YYYY-MM-DD">
 <br>
 <input readonly type="text" id="date3" placeholder="YYYY-MM-DD hh:mm"><input readonly type="text" id="date4" placeholder="YYYY-MM-DD hh:mm:ss">
+<br>
+<input readonly type="text" id="date15" placeholder="YYYY">
 <hr>
 <div>主题风格：<br>blue、red、green、black、支持自定义</div>
 <input readonly type="text" id="date5" placeholder="blue"><input readonly type="text" id="date6" placeholder="red">
@@ -40,13 +42,19 @@ window.onload = function(){
   *欢迎关注https://github.com/weijhfly/rolldate，并给个star，此插件会持续完善。
  */
  // 格式
+  new rolldate.Date({
+ 	el:'#date15',
+		format:'YYYY',
+		beginYear:2000,
+		endYear:2100
+ })
  new rolldate.Date({
  	el:'#date',
 		format:'YYYY-MM',
 		beginYear:2000,
 		endYear:2100
  })
- new rolldate.Date({
+new rolldate.Date({
  	el:'#date2',
 		format:'YYYY-MM-DD',
 		beginYear:2000,
@@ -182,5 +190,5 @@ window.onload = function(){
 }
 </script>
 <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
-<script type="text/javascript" src="js/rolldate.js"></script></body>
+<script type="text/javascript" src="js/rolldate.js?v=2"></script></body>
 </html>
