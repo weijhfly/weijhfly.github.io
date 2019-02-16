@@ -10,10 +10,10 @@
 		input+input{margin-left: 10px;}
 		h4{margin:10px 0;}
 	</style>
-<script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script> 
+<!-- <script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script> 
 <script>
 var vConsole = new VConsole();
-</script>
+</script> -->
 </head>
 <body>
 <h1>rolldate 移动端日期选择插件</h1>
@@ -22,8 +22,8 @@ var vConsole = new VConsole();
 	<a href="https://weijhfly.github.io/rolldate-index2.html">返回旧版</a>
 </h3>
 
-<h4>支持格式：</h4>
-YYYY-MM、YYYY-MM-DD、YYYY-MM-DD hh:mm、YYYY-MM-DD hh:mm:ss、YYYY、MM、DD、hh:mm、hh:mm:ss、YYYY-MM-DD hh
+<h4>支持格式：(13种)</h4>
+YYYY-MM、YYYY-MM-DD、YYYY-MM-DD hh:mm、YYYY-MM-DD hh:mm:ss、YYYY、MM、DD、hh:mm、hh:mm:ss、YYYY-MM-DD hh、hh、mm、ss
 <br>
 <input readonly type="text" id="date" placeholder="YYYY-MM"><input readonly type="text" id="date2" placeholder="YYYY-MM-DD">
 <br>
@@ -34,6 +34,10 @@ YYYY-MM、YYYY-MM-DD、YYYY-MM-DD hh:mm、YYYY-MM-DD hh:mm:ss、YYYY、MM、DD�
 <input readonly type="text" id="date18" placeholder="DD"><input readonly type="text" id="date19" placeholder="hh:mm">
 <br>
 <input readonly type="text" id="date20" placeholder="hh:mm:ss"><input readonly type="text" id="date26" placeholder="YYYY-MM-DD hh">
+<br>
+<input readonly type="text" id="date27" placeholder="hh"><input readonly type="text" id="date28" placeholder="mm">
+<br>
+<input readonly type="text" id="date29" placeholder="ss">
 <hr>
 
 <h4>回调函数：</h4>
@@ -113,9 +117,21 @@ window.onload = function(){
  	el:'#date20',
 	format:'hh:mm:ss'
  })
-  new rolldate.Date({
+ new rolldate.Date({
  	el:'#date26',
 	format:'YYYY-MM-DD hh'
+ })
+ new rolldate.Date({
+ 	el:'#date27',
+	format:'hh'
+ })
+ new rolldate.Date({
+ 	el:'#date28',
+	format:'mm'
+ })
+ new rolldate.Date({
+ 	el:'#date29',
+	format:'ss'
  })
   // 回调
   new rolldate.Date({
@@ -174,6 +190,7 @@ window.onload = function(){
 	beginYear:2000,
 	endYear:2100,
 	confirmBefore:function(el,date){
+		console.log(el,date)
 		var d = new Date(),
 			d1 = new Date(date.replace(/\-/g, "\/")),
 			d2 = new Date(d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate());//如果非'YYYY-MM-DD'格式，需要另做调整
@@ -208,6 +225,6 @@ window.onload = function(){
  })
 }
 </script>
-<script type="text/javascript" src="js/rolldate.min.js?v=6"></script>
+<script type="text/javascript" src="js/rolldate.min.js?v=7"></script>
 </body>
 </html>
