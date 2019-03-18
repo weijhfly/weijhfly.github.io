@@ -8,8 +8,19 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 		h1{font-size: 30px;}
-		.form-control[readonly]{
-			background: none;
+		@media(max-width: 414px){
+			.form-control{font-size: 12px;}
+		}
+		@media(max-width: 360px){
+			.form-control{ 
+				font-size: 10px;
+			    padding: 0 5px;
+			}
+		}
+		@media(max-width: 320px){
+			.col-xs-6{ 
+				padding: 0 5px;
+			}
 		}
 	</style>
 </head>
@@ -223,9 +234,11 @@ window.onload = function(){
 		console.log('滚动结束');
 	},
 	confirmBefore:function(el,date){
+		console.log(date)
 		console.log('确定按钮触发');
 	},
 	confirmEnd:function(el,date){
+		console.log(date)
 		console.log('插件运行结束');
 	}
  })
@@ -284,7 +297,6 @@ window.onload = function(){
 	format:'YYYY-MM-DD',
 	beginYear:2000,
 	endYear:2100,
-	theme:'blue'
  })
 // 设置默认日期
   new rolldate.Date({
@@ -302,5 +314,5 @@ window.onload = function(){
  })
 }
 </script>
-<script type="text/javascript" src="js/rolldate.min.js"></script></body>
+<script type="text/javascript" src="js/rolldate.min.js?v=2"></script></body>
 </html>
