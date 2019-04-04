@@ -86,6 +86,7 @@ SparkMD5.hash('hello world')
 		request.responseType = 'blob';
 		request.onload = function(e) {
 			console.log(request.response)
+			SparkMD5.file(new File([request.response], '1.png'),function(m){console.log(m)})
 		};
 		request.onerror = function(e){
 			console.error(e);
