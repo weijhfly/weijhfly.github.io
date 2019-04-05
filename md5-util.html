@@ -34,9 +34,9 @@ SparkMD5.file(file,function(md5){
 		<h4><strong>计算网络文件md5</strong></h4>
 <pre>
 /*
- * 使用了XMLHttpRequest responseType = 'blob'，在部分浏览器存在兼容性问题，
- * 已知ios uc浏览器及安卓5.1.1系统浏览器中返回blob不正确，导致md5计算错误，
- * 如果要计算网络文件请慎用，或者计算已知md5的网络文件，对比md5是否准确，考量使用。
+ 使用了XMLHttpRequest responseType = 'blob'，在部分浏览器存在兼容性问题，
+ 已知ios uc浏览器及安卓5.1.1系统浏览器中返回blob不正确，导致md5计算错误，
+ 如果要计算网络文件请慎用，或者计算已知md5的网络文件，对比md5是否准确，考量使用。
 */
 
 SparkMD5.file(url,function(md5){
